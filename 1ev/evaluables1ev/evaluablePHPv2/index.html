@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario PHP</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <h1>Evaluable PHP</h1>
+    <h3>Formulario de alta:</h3>
+    <form action="evaluable.php" method="POST" enctype="multipart/form-data">
+        Nombre: <input type="text" name="nombre" required><br>
+        Usuario: <input type="text" name="user" required><br>
+        Contraseña: <input type="text" name="password" required><br>
+        eMail: <input type="text" name="email" required><br>
+        F. Nacimiento: <input type="date" name="fnac" required><br><br>
+        Foto: <input type="file" accept="image/jpeg, image/gif" name="foto" max="200000" required><br><br>
+
+        <input type="submit" name="boton" value="Enviar">
+
+    </form>
+
+    <footer>
+        <h2><a href="#"> Tony Rodríguez Jiménez</a></h2>
+    </footer>
+</body>
+
+</html>

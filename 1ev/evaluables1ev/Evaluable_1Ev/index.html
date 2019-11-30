@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alta de usuarios</title>
+</head>
+
+<body>
+    <h1>Evaluable 1ªev PHP</h1>
+    <h3>Formulario de alta:</h3>
+    <form action="evaluable1.php" method="post" enctype="multipart/form-data">
+        <label>Nombre:</label><input type="text" name="nombre" required maxlength="40"><br><br>
+        <label>Usuario:</label><input type="text" name="user" required><br><br>
+        <label>Contraseña (8 chars):</label><input type="password" name="password" minlength="8" required><br><br>
+        <label>eMail:</label><input type="email" name="email" required><br><br>
+        <label>Fecha de nacimiento:</label><input type="date" name="fnac" required><br><br>
+        <label>Foto: </label> <input type="file" accept="image/jpeg, image/gif" name="foto" max="200000" required><br><br>
+        <input type="submit" name="boton" value="Enviar">
+
+
+    </form>
+
+</body>
+
+</html>
