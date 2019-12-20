@@ -8,4 +8,8 @@
   //Nosotros lo usaremos para que nos funcionen a todos los ejemplos y los ejercicios
     $db_usuario = "root";
     $db_clave = "";
+
+    $opciones = array( PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_PERSISTENT => true );
  

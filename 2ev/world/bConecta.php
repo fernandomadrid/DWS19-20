@@ -4,16 +4,13 @@
 include_once ("config.php");
 
 
-    /*1.1 --> Creamos el array de opciones */
-$opciones = array( PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_PERSISTENT => true );
+ 
 
     
     /*1.2 --> Establecer objeto de conexi�n*/
 try{
     
-	$pdo = new PDO('mysql:host=' . $db_hostname . ';dbname=' . $db_nombre . '', $db_usuario, $db_clave);
+	$pdo = new PDO('mysql:host=' . $db_hostname . ';dbname=' . $db_nombre . '', $db_usuario, $db_clave, $opciones);
     //echo "Conexión establecida<br>";
     
 }catch(PDOException $error){

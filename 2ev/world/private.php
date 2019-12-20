@@ -37,9 +37,9 @@
         </tr>
         </thead>
     <?php 
-     foreach ( $link->query('SELECT * from country') as $row){ // aca puedes hacer la consulta e iterarla con each. ?> 
+     foreach ( $link->query('SELECT * from country ORDER BY name') as $row){ // aca puedes hacer la consulta e iterarla con each. ?> 
     <tr>
-        <td><a href="paises.php/?valor=<?php echo $row['Name']?>"><?php echo $row['Name'] // aca te faltaba poner los echo para que se muestre el valor de la variable.  ?></a></td>
+        <td><a href="paises.php/?valor=<?php echo $row['Code']?>"><?php echo $row['Name'] // aca te faltaba poner los echo para que se muestre el valor de la variable.  ?></a></td>
         <td><?php echo $row['Continent'] ?></td>
         <td><?php echo $row['Region'] ?></td>
         <td><?php echo $row['SurfaceArea'] ?></td>
