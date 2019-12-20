@@ -8,8 +8,8 @@ if ($_SESSION['acceso'] != 1){
 
 }
 
-cabecera("Comprobar");
-echo "Bienvenido a la página privada ".$_SESSION['user'];
-//Aqí irán las consultas
+//cabecera("Comprobar");
+//echo "Bienvenido a la página privada ".$_SESSION['user'];
+header('location:private.html');
 
-echo "<br><a href=salir.php>Salir del sistema</a>";
+//echo "<br><a href=salir.php>Salir del sistema</a>";

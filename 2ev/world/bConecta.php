@@ -51,6 +51,17 @@ function SelectUser($user, $password, $pdo){
     $registro = $select->fetch();
     return $registro;
 }
+
+function SelectCountry($pdo){
+    
+
+    $select = $pdo->prepare('SELECT * FROM country');
+    
+    $select->execute();
+    $registro = $select->fetch();
+    return $registro;
+
+}
             
         
     

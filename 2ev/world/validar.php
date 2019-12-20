@@ -17,7 +17,7 @@
         if (!strcmp($user, $registro['usuario']) && !strcmp($password, $registro['clave'])){
             $_SESSION['acceso']=1;
             $_SESSION['user']=$registro['usuario'];
-            header('location:privada.php');
+            header('location:private.php');
         }else{
             echo "Acceso Denegado";
         }
@@ -27,7 +27,7 @@
     }else{ //se registra, insert del usuario
 
         if(!insertUser($user, $password, $pdo)){
-            echo "error al insertar";
+            echo "error al insertar, ya existe el registro";
         }else{
             echo "usuario registrado!";
         }
