@@ -7,26 +7,44 @@
     cabecera("Validar");
 
     $user=recoge("user");
-    $password=recoge("password");
+    $password=crypt_blowfish(recoge("password"));
 
 
     if (isset($_POST['bLogin'])){ //si pulsa login
 
-
+        $registro=SelectUser($user, $password, $pdo);
         
-
-        if (!strcmp($user,"root") && !strcmp($password, "super")){
+        if (!strcmp($user, $registro['usuario']) && !strcmp($password, $registro['clave'])){
             $_SESSION['acceso']=1;
-            $_SESSION['user']='root';
+            $_SESSION['user']=$registro['usuario'];
             header('location:privada.php');
         }else{
             echo "Acceso Denegado";
         }
-    }else{ //sino se registra
+    
+    
+    
+    }else{ //se registra, insert del usuario
+
+        if(!insertUser($user, $password, $pdo)){
+            echo "error al insertar";
+        }else{
+            echo "usuario registrado!";
+        }
 
 
 
     }
-    include("index.html");
+    //include("index.html");
+
+
+    function crypt_blowfish($password) {
+
+        $salt = '$2a$07$usesomesillystringforsalt$';
+        $pass= crypt($password, $salt);
+
+        //echo "<br> SALT $salt <br>" ;
+        return $pass;
+    }
     
 ?>
