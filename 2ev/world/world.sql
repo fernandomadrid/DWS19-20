@@ -26,8 +26,20 @@ CREATE DATABASE `world` DEFAULT CHARACTER SET utf8mb4;
 USE `world`;
 
 --
+-- Table structure for table `usuarios`
+--
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE `usuarios` (
+  `usuario` char(20) NOT NULL DEFAULT '' UNIQUE,
+  `clave` char(200) NOT NULL DEFAULT '',
+  PRIMARY KEY (`usuario`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
 -- Table structure for table `city`
 --
+
 
 DROP TABLE IF EXISTS `city`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

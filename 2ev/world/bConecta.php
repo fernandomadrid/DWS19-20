@@ -3,11 +3,6 @@
 
 include_once ("config.php");
 
-
- 
-
-    
-    /*1.2 --> Establecer objeto de conexi�n*/
 try{
     
 	$pdo = new PDO('mysql:host=' . $db_hostname . ';dbname=' . $db_nombre . '', $db_usuario, $db_clave, $opciones);
@@ -16,9 +11,6 @@ try{
 }catch(PDOException $error){
 	echo "Fallo en la conexion prim..." . $error->getMessage()."<br>";
 }
-
-
-       
 
 
 function InsertUser($user, $password, $pdo){
@@ -51,17 +43,11 @@ function SelectUser($user, $password, $pdo){
 
 function SelectCountry($pdo){
     
-
-    $select = $pdo->prepare('SELECT * FROM country');
-    
+    $select = $pdo->prepare('SELECT * FROM country');    
     $select->execute();
     $registro = $select->fetch();
     return $registro;
 
 }
             
-        
-    
-
-
 ?>

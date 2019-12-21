@@ -40,8 +40,9 @@ function recoge($var)
 {
 	if (isset($_REQUEST[$var]))
 		$tmp=strip_tags(sinEspacios($_REQUEST[$var]));
-	else 
-		$tmp= "";
+	//else 
+		//$tmp= "";
+		
 	
 	return $tmp;
 }

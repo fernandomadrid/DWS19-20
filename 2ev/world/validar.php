@@ -1,10 +1,10 @@
-
 <?php 
 
     include ("bGeneral.php");
     include('bConecta.php');
     session_start();
     cabecera("Validar");
+
 
     $user=recoge("user");
     $password=crypt_blowfish(recoge("password"));
@@ -19,17 +19,29 @@
             $_SESSION['user']=$registro['usuario'];
             header('location:private.php');
         }else{
-            echo "Acceso Denegado";
+            header('location: index.php?fallo=true');
+            
         }
     
     
     
     }else{ //se registra, insert del usuario
 
-        if(!insertUser($user, $password, $pdo)){
-            echo "error al insertar, ya existe el registro";
-        }else{
-            echo "usuario registrado!";
+        if($user!="" && $password!=""){
+
+            try{
+                if(insertUser($user, $password, $pdo)){
+                   
+                
+                    echo "Usuario registrado!";
+                }
+            }catch (Exception $e) {
+                if ($e->getCode() == 23000) 
+                    header('location: index.php?fallo=reg');
+                else
+                    echo "<br>".$e->getMessage()."<br><br>";  
+                echo "<a href=index.php>Volver al inicio</a>";
+             }
         }
 
 
@@ -46,5 +58,3 @@
         //echo "<br> SALT $salt <br>" ;
         return $pass;
     }
-    
-?>
