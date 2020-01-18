@@ -31,13 +31,14 @@
             <br /><br />
             <div class="row error">
                 <?php
-        if (isset($_GET["fallo"]) && $_GET["fallo"] == 'true') {
-          echo "<h3 style='color:red'>Usuario o contraseña no válida! </h3>";
-        }
-        if (isset($_GET["fallo"]) && $_GET["fallo"] == 'reg') {
-          echo "<h3 style='color:red'>El usuario ya existe </h3>";
-        }
-        ?>
+                /*En el caso de fallo de autenticación se muestran los errores*/
+                if (isset($_GET["fallo"]) && $_GET["fallo"] == 'true') {
+                    echo "<h3 style='color:red'>Usuario o contraseña no válida! </h3>";
+                }
+                if (isset($_GET["fallo"]) && $_GET["fallo"] == 'reg') {
+                    echo "<h3 style='color:red'>El usuario ya existe </h3>";
+                }
+                ?>
             </div>
             <div class="middle">
                 <div id="login">
@@ -47,20 +48,20 @@
                                 <span class="fa fa-user"></span>
                                 <input type="text" placeholder="Username" name="user" required />
                             </p>
-                            <!-- JS because of IE support; better: placeholder="Username" -->
+
                             <p>
                                 <span class="fa fa-lock"></span>
                                 <input type="password" placeholder="Password" name="password" required />
                             </p>
-                            <!-- JS because of IE support; better: placeholder="Password" -->
+
 
                             <div>
                                 <span style="width:48%; text-align:left;  display: inline-block;">
-                                    <h5 class="text-light">Not account?</h5>
-                                    <input type="submit" value="Register" name="bRegister" />
+                                    <h5 class="text-light">No tienes cuenta?</h5>
+                                    <input type="submit" value="Regístrate" name="bRegister" />
                                 </span>
                                 <span style="width:50%; text-align:right;  display: inline-block;">
-                                    <input type="submit" value="Sign In" name="bLogin" />
+                                    <input class="bg-success" type="submit" value="Iniciar sesión" name="bLogin" />
                                 </span>
                             </div>
 

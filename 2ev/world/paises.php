@@ -14,31 +14,33 @@
 <body>
 
     <?php
-  session_start();
+    session_start();
 
 
-  ?>
+    ?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
         <ul class="navbar-nav">
             <li class="nav-item active">
+                <a class="nav-link" href="#"><?php echo $_SESSION['user']; ?></a>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link text-warning" href="../private.php">Volver</a>
             </li>
+
 
             <li class="nav-item active">
                 <a class="nav-link text-danger" href="../salir.php">Salir</a>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="#"><?php echo $_SESSION['user']; ?></a>
-            </li>
+
         </ul>
     </nav>
 
     <?php
-  include('config.php');
-  $link = new PDO('mysql:host=' . $db_hostname . ';dbname=' . $db_nombre,  $db_usuario, $db_clave, $opciones);
-  $code = $_GET['valor'];
-  ?>
+    include('config.php');
+    $link = new PDO('mysql:host=' . $db_hostname . ';dbname=' . $db_nombre,  $db_usuario, $db_clave, $opciones);
+    $code = $_GET['valor'];
+    ?>
 
     <h1>Ciudades e Idiomas hablados en <?php echo $code; ?>
     </h1>
@@ -56,8 +58,8 @@
                     </tr>
                 </thead>
                 <?php
-        foreach ($link->query("SELECT * FROM city WHERE CountryCode='" . $code . "'") as $row) {
-        ?>
+                foreach ($link->query("SELECT * FROM city WHERE CountryCode='" . $code . "'") as $row) {
+                ?>
                 <tr>
 
                     <td><?php echo $row['Name'] ?></td>
@@ -65,8 +67,8 @@
 
                 </tr>
                 <?php
-        }
-        ?>
+                }
+                ?>
             </table>
         </div>
         <div class="col-6">
@@ -81,8 +83,8 @@
                     </tr>
                 </thead>
                 <?php
-        foreach ($link->query("SELECT * FROM countrylanguage WHERE CountryCode='" . $code . "'") as $row) {
-        ?>
+                foreach ($link->query("SELECT * FROM countrylanguage WHERE CountryCode='" . $code . "'") as $row) {
+                ?>
                 <tr>
 
                     <td><?php echo $row['Language'] ?></td>
@@ -90,8 +92,8 @@
 
                 </tr>
                 <?php
-        }
-        ?>
+                }
+                ?>
             </table>
         </div>
     </div>

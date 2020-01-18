@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>World info</title>
+    <title>Root Page</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -28,7 +28,7 @@
             </li>
         </ul>
     </nav>
-    <h1>Países del Mundo</h1>
+    <h1>Control de Usuarios</h1>
 
     <?php
     include('config.php');
@@ -40,29 +40,30 @@
 
         <thead>
             <tr>
-                <th>NOMBRE</th>
-                <th>CONTINENTE</th>
-                <th>REGION</th>
-                <th>SUPERFICIE</th>
-                <th>POBLACION</th>
-                <th>ESPERANZA_DE_VIDA</th>
-                <th>TIPO_DE_GOBIERNO</th>
+                <th>USUARIO</th>
+                <th>FECHA DE ALTA</th>
+                <th>ACCIONES</th>
 
             </tr>
         </thead>
         <?php
-        foreach ($link->query('SELECT * from country ORDER BY name') as $row) { // aca puedes hacer la consulta e iterarla con each. 
+        foreach ($link->query('SELECT * from usuarios ORDER BY usuario') as $row) {
         ?>
         <tr>
-            <td><a href="paises.php/?valor=<?php echo $row['Code'] ?>"><?php echo $row['Name'] // aca te faltaba poner los echo para que se muestre el valor de la variable.  
-                                                                            ?></a>
+
+            <td><?php echo $row['usuario'];
+                    $user = $row['usuario']; ?></td>
+            <td><?php echo $row['fecha'] ?></td>
+            <td>
+
+                <form action="borrarUsuario.php?user=<?php echo $user; ?>" method="POST">
+                    <input type="submit" class="btn btn-danger" value="Eliminar" name="bDelete">
+
+                    </input>
+                </form>
+
             </td>
-            <td><?php echo $row['Continent'] ?></td>
-            <td><?php echo $row['Region'] ?></td>
-            <td><?php echo $row['SurfaceArea'] ?></td>
-            <td><?php echo $row['Population'] ?></td>
-            <td><?php echo $row['LifeExpectancy'] ?></td>
-            <td><?php echo $row['GovernmentForm'] ?></td>
+
         </tr>
         <?php
         }

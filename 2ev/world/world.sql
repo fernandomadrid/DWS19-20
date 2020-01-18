@@ -32,6 +32,7 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `usuario` char(20) NOT NULL DEFAULT '' UNIQUE,
   `clave` char(200) NOT NULL DEFAULT '',
+  `fecha` char(40) DEFAULT '',
   PRIMARY KEY (`usuario`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

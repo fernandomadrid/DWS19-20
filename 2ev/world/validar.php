@@ -1,60 +1,62 @@
-<?php 
+<?php
 
-    include ("bGeneral.php");
-    include('bConecta.php');
-    session_start();
-    cabecera("Validar");
-
-
-    $user=recoge("user");
-    $password=crypt_blowfish(recoge("password"));
+include("bGeneral.php");
+include('bConecta.php');
+session_start();
+cabecera("Validar");
 
 
-    if (isset($_POST['bLogin'])){ //si pulsa login
+$user = recoge("user");
+$password = crypt_blowfish(recoge("password")); //se recoge password encriptado 
 
-        $registro=SelectUser($user, $password, $pdo);
-        
-        if (!strcmp($user, $registro['usuario']) && !strcmp($password, $registro['clave'])){
-            $_SESSION['acceso']=1;
-            $_SESSION['user']=$registro['usuario'];
+
+if (isset($_POST['bLogin'])) { //si pulsa Sign In se loguea
+
+    $registro = SelectUser($user, $password, $pdo);
+
+    if (!strcmp($user, $registro['usuario']) && !strcmp($password, $registro['clave'])) {
+        $_SESSION['acceso'] = 1;
+        $_SESSION['user'] = $registro['usuario'];
+        setcookie("fecha", date("d-m-Y H:i:s", time()), time() + 365 * 24 * 60 * 60); //Se crea cookie con la fecha del último acceso que se mostrará en la página
+
+        if ($registro['usuario'] == "root" || $registro['usuario'] == "admin") { //si el usuario es admin o root entra a una página privada con opciones especiales
+            header('location:admin.php');
+        } else { //si no es admin o root entra a la parte privada normal
             header('location:private.php');
-        }else{
-            header('location: index.php?fallo=true');
-            
         }
-    
-    
-    
-    }else{ //se registra, insert del usuario
+    } else { //si no existe el usuario se devuelve fallo que se tomará por GET
+        header('location: index.php?fallo=true');
+    }
+} else { //sino, se registra. Insert del usuario.
 
-        if($user!="" && $password!=""){
+    if ($user != "" && $password != "") {
 
-            try{
-                if(insertUser($user, $password, $pdo)){
-                   
-                
-                    echo "Usuario registrado!";
-                }
-            }catch (Exception $e) {
-                if ($e->getCode() == 23000) 
-                    header('location: index.php?fallo=reg');
-                else
-                    echo "<br>".$e->getMessage()."<br><br>";  
-                echo "<a href=index.php>Volver al inicio</a>";
-             }
+        try {
+            if (insertUser($user, $password, $pdo)) {
+                echo  '<script language="javascript">alert("Usuario registrado! Inicia Sesión");</script>';
+                include "index.php";
+            }
+        } catch (Exception $e) {
+            if ($e->getCode() == 23000)
+                header('location: index.php?fallo=reg');
+            else
+                echo "<br>" . $e->getMessage() . "<br><br>";
+            echo "<a href=index.php>Volver al inicio</a>";
         }
-
-
-
     }
-    //include("index.html");
+}
 
 
-    function crypt_blowfish($password) {
 
-        $salt = '$2a$07$usesomesillystringforsalt$';
-        $pass= crypt($password, $salt);
 
-        //echo "<br> SALT $salt <br>" ;
-        return $pass;
-    }
+
+
+function crypt_blowfish($password)
+{
+
+    $salt = '$2a$07$usesomesillystringforsalt$';
+    $pass = crypt($password, $salt);
+
+    //echo "<br> SALT $salt <br>" ;
+    return $pass;
+}
