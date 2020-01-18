@@ -15,20 +15,23 @@
 <body>
     <?php session_start(); ?>
     <nav class="navbar  navbar-expand-sm bg-dark navbar-dark justify-content-end ">
-        <p class="text-muted">Última visita el
-            <?php echo $_COOKIE['fecha']; ?>
-        </p>
+
         <ul class="navbar-nav">
+            <li>
+                <p class="text-muted">Última visita el
+                    <?php echo $_COOKIE[$_SESSION['user']]; ?>
+                </p>
+            </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="#"><?php echo $_SESSION['user']; ?></a>
+                <a class="nav-link" href="#"><?php echo "Hola " .  $_SESSION['user']; ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-danger" href="salir.php">Logout</a>
+                <a class="nav-link text-danger" href="salir.php">Salir</a>
             </li>
         </ul>
     </nav>
-    <h1>Control de Usuarios</h1>
+    <h1>Administración de usuarios</h1>
 
     <?php
     include('config.php');

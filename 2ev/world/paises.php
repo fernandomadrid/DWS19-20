@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-end">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#"><?php echo $_SESSION['user']; ?></a>
+                <a class="nav-link" href="#"><?php echo "Hola " . $_SESSION['user']; ?></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link text-warning" href="../private.php">Volver</a>
@@ -39,7 +39,7 @@
     <?php
     include('config.php');
     $link = new PDO('mysql:host=' . $db_hostname . ';dbname=' . $db_nombre,  $db_usuario, $db_clave, $opciones);
-    $code = $_GET['valor'];
+    $code = $_GET['valor']; //tomo el código del país del que quiero consultar datos por GET
     ?>
 
     <h1>Ciudades e Idiomas hablados en <?php echo $code; ?>
@@ -58,7 +58,7 @@
                     </tr>
                 </thead>
                 <?php
-                foreach ($link->query("SELECT * FROM city WHERE CountryCode='" . $code . "'") as $row) {
+                foreach ($link->query("SELECT * FROM city WHERE CountryCode='" . $code . "'") as $row) { //consulta de las ciudades de un país dado en el code
                 ?>
                 <tr>
 
@@ -83,7 +83,7 @@
                     </tr>
                 </thead>
                 <?php
-                foreach ($link->query("SELECT * FROM countrylanguage WHERE CountryCode='" . $code . "'") as $row) {
+                foreach ($link->query("SELECT * FROM countrylanguage WHERE CountryCode='" . $code . "'") as $row) { //consulta de idioma en otra tabla
                 ?>
                 <tr>
 

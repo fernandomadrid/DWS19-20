@@ -56,12 +56,14 @@
 
 
                             <div>
+
+                                <span style="width:50%; text-align:right;  display: inline-block;">
+                                    <input class="bg-success" type="submit" value="Iniciar sesión" name="bLogin" />
+                                </span>
+                                <hr>
                                 <span style="width:48%; text-align:left;  display: inline-block;">
                                     <h5 class="text-light">No tienes cuenta?</h5>
                                     <input type="submit" value="Regístrate" name="bRegister" />
-                                </span>
-                                <span style="width:50%; text-align:right;  display: inline-block;">
-                                    <input class="bg-success" type="submit" value="Iniciar sesión" name="bLogin" />
                                 </span>
                             </div>
 
@@ -81,6 +83,9 @@
 
                 </div>
 
+            </div>
+            <div class="footer">
+                <h5>NOTA: Para menú de administrador, registrar usuarios "admin" o "root"</h5>
             </div>
         </div>
 
