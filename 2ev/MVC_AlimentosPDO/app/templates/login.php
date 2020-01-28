@@ -1,14 +1,19 @@
 <?php ob_start() ?>
-<!-- 
-<div class="row">
-<h1>Login</h1>
-<h3> Fecha: <?php echo $params['fecha'] ?> </h3>
- -->
-<?php if (isset($params['mensajeError'])) : ?>
-<div class="alert alert-danger">
-    <h5><strong>Lo siento. </strong> <?php echo $params['mensajeError'] ?></h5>
+
+<div id="login">
+    <form action="index.php?ctl=login" method="POST">
+        <input type="text" placeholder="Username" name="user" required />
+        <br><br>
+        <input type="password" placeholder="Password" name="password" required />
+        <br><br>
+        <input class="bg-success" type="submit" value="Iniciar sesión" name="bLogin" />
+        <hr>
+        <h5 class="text-light">No tienes cuenta?</h5>
+        <input type="submit" value="Regístrate" name="bRegister" />
+    </form>
+
 </div>
-<?php endif; ?>
+
 
 <?php $contenido = ob_get_clean() ?>
 

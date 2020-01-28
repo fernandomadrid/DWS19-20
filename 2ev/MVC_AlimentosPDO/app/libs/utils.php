@@ -26,4 +26,3 @@ function sinEspacios($frase) {
     $texto = trim(preg_replace('/ +/', ' ', $frase));
     return $texto;
 }
-?>

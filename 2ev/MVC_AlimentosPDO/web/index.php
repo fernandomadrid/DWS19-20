@@ -17,13 +17,14 @@ if (!isset($_SESSION['acceso'])) {
 //añadimos el elemento acceso para controlar el nivel de usuario que tiene que tener para acceder
 //nivel 0 para acceso a todos los usuarios incluso no logueados
 $map = array(
-	'inicio' => array('controller' => 'Controller', 'action' => 'login' /*<---Aquí ponía inicio*/, 'acceso' => 0),
-
-	'listar' => array('controller' => 'Controller', 'action' => 'listar', 'acceso' => 0),
-	'insertar' => array('controller' => 'Controller', 'action' => 'insertar', 'acceso' => 0),
-	'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre', 'acceso' => 0),
-	'buscarPorEnergia' => array('controller' => 'Controller', 'action' => 'buscarPorEnergia', 'acceso' => 0),
-	'ver' => array('controller' => 'Controller', 'action' => 'ver', 'acceso' => 0)
+	'inicio' => array('controller' => 'Controller', 'action' => 'inicio', 'acceso' => 1), //tengo que crear inicio
+	//añadir login
+	'login' => array('controller' => 'Controller', 'action' => 'login', 'acceso' => 1),
+	'listar' => array('controller' => 'Controller', 'action' => 'listar', 'acceso' => 1),
+	'insertar' => array('controller' => 'Controller', 'action' => 'insertar', 'acceso' => 1),
+	'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre', 'acceso' => 1),
+	'buscarAlimentosPorEnergia' => array('controller' => 'Controller', 'action' => 'buscarAlimentosPorEnergia', 'acceso' => 1),
+	'ver' => array('controller' => 'Controller', 'action' => 'ver', 'acceso' => 1)
 );
 
 // Parseo de la ruta
@@ -39,7 +40,7 @@ if (isset($_GET['ctl'])) {
 	}
 } else {
 	//Si no se ha seleccionado nada mostraremos pantalla de inicio
-	$ruta = 'inicio'; /*<---Aquí ponía login*/
+	$ruta = 'login'; /*para que entre por el login*/
 }
 
 $controlador = $map[$ruta];
