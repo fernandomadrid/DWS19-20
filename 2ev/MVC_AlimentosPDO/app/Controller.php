@@ -8,22 +8,37 @@ class Controller
 
 	public function login()
 	{
-
+		$params['mensaje'] = "";
 		$m = new Model;
 		//Recojo y valido datos del formulario
-		if (isset($_POST['bRegister'])) {
-			$user = recoge('user');
-			$password = crypt_blowfish(recoge('password'));
-			$nivel = 1;
-			//compruebo si tengo datos
-			if (isset($user) && isset($password)) {
+		$user = recoge('user');
+		$password = crypt_blowfish(recoge('password'));
+		$nivel = 1;
+		if (isset($user) && isset($password)) { //compruebo si tengo datos
+
+			if (isset($_POST['bRegister'])) { //si se pulsa registrar
+
 				//si correcto{
 				//llamar modelo
 				if ($m->InsertUser($user, $password)) {
 
 					header('Location: index.php?ctl=login');
 				} else {
+
 					$params['mensaje'] = 'No se ha podido insertar el usuario.';
+				}
+			} else { // si se pulsa login
+
+				if ($m->SelectUser($user, $password)) {
+
+					session_start();
+					$_SESSION['nombre'] = $user;
+					$_SESSION['acceso'] = 1;
+
+					header('location: index.php?ctl=inicio');
+				} else {
+
+					$params['mensaje'] = 'El usuario no está registrado';
 				}
 			}
 		}

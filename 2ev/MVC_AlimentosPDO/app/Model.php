@@ -113,10 +113,11 @@ class Model extends PDO
     }
 
 
-    function SelectUser($user, $password, $pdo)
+    function SelectUser($user, $password)
     {
+        $consulta = "SELECT * FROM usuarios WHERE nombre=:user";
 
-        $select = $pdo->prepare('SELECT * FROM usuarios WHERE usuario=:user');
+        $select = $this->conexion->prepare($consulta);
         $select->bindParam(':user', $user);
         $select->execute();
         $registro = $select->fetch();

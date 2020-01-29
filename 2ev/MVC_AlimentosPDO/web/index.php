@@ -47,11 +47,13 @@ $controlador = $map[$ruta];
 //Cargamos el asociado a la acción seleccionada por el usuario 
 
 // Ejecución del controlador asociado a la ruta
-if (method_exists($controlador['controller'], $controlador['action'])) {
-	call_user_func(array(new $controlador['controller'], $controlador['action']));
-} else {
-	//Si no existe controlador asociado a la acción, mostramos pantalla de error
-	header('Status: 404 Not Found');
-	echo '<html><body><h1>Error 404: El controlador <i>' .
-		$controlador['controller'] . '->' .	$controlador['action'] . '</i> no existe</h1></body></html>';
+if ($_SESSION['acceso'] == 1 /*$map['acceso]?? preguntar*/) {
+	if (method_exists($controlador['controller'], $controlador['action'])) {
+		call_user_func(array(new $controlador['controller'], $controlador['action']));
+	} else {
+		//Si no existe controlador asociado a la acción, mostramos pantalla de error
+		header('Status: 404 Not Found');
+		echo '<html><body><h1>Error 404: El controlador <i>' .
+			$controlador['controller'] . '->' .	$controlador['action'] . '</i> no existe</h1></body></html>';
+	}
 }
