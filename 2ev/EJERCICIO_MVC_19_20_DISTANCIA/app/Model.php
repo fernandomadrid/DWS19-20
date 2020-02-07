@@ -1,5 +1,5 @@
 <?php
-include_once ('Config.php');
+include_once('Config.php');
 
 class Model extends PDO
 {
@@ -8,53 +8,47 @@ class Model extends PDO
 
     public function __construct()
     {
-        
-            $this->conexion = new PDO('mysql:host=' . Config::$mvc_bd_hostname . ';dbname=' . Config::$mvc_bd_nombre . '', Config::$mvc_bd_usuario, Config::$mvc_bd_clave);
-            // Realiza el enlace con la BD en utf-8
-            $this->conexion->exec("set names utf8");
-            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       
+
+        $this->conexion = new PDO('mysql:host=' . Config::$mvc_bd_hostname . ';dbname=' . Config::$mvc_bd_nombre . '', Config::$mvc_bd_usuario, Config::$mvc_bd_clave);
+        // Realiza el enlace con la BD en utf-8
+        $this->conexion->exec("set names utf8");
+        $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-   
+
 
     public function dameAlimentos()
     {
-        
-            $consulta = "select * from alimentos order by energia desc";
-            $result = $this->conexion->query($consulta);
-            return $result->fetchAll();
-           
-       
+
+        $consulta = "select * from alimentos order by energia desc";
+        $result = $this->conexion->query($consulta);
+        return $result->fetchAll();
     }
 
     public function buscarAlimentosPorNombre($nombre)
     {
-       
+
         $consulta = "select * from alimentos where nombre like :nombre order by energia desc";
-        
+
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':nombre', $nombre);
         $result->execute();
-           
+
         return $result->fetchAll();
-        
     }
-    
+
     public function dameAlimento($id)
     {
-        
-            $consulta = "select * from alimentos where id=:id";
-            
-            $result = $this->conexion->prepare($consulta);
-            $result->bindParam(':id', $id);
-            $result->execute();
-            return $result->fetch();
-            
-        
+
+        $consulta = "select * from alimentos where id=:id";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':id', $id);
+        $result->execute();
+        return $result->fetch();
     }
-    
-    
+
+
     public function insertarAlimento($n, $e, $p, $hc, $f, $g)
     {
         $consulta = "insert into alimentos (nombre, energia, proteina, hidratocarbono, fibra, grasatotal) values (?, ?, ?, ?, ?, ?)";
@@ -66,10 +60,34 @@ class Model extends PDO
         $result->bindParam(5, $f);
         $result->bindParam(6, $g);
         $result->execute();
-                
+
         return $result;
     }
 
-    
+    //funcion para insertar nuevos usuarios
+    function InsertUser($user, $pass, $email, $ciudad)
+    {
+
+        $consulta = "INSERT INTO users (user, pass, nivel, email, ciudad) VALUES (:user, :pass, 1, :email,:ciudad)";
+        $insert = $this->conexion->prepare($consulta);
+        $insert->bindParam(':user', $user);
+        $insert->bindParam(':pass', $pass);
+        $insert->bindParam('email', $email);
+        $insert->bindParam('ciudad', $ciudad);
+        $insert->execute();
+        return $insert;
+    }
+
+
+    function SelectUser($user, $pass)
+    {
+        $consulta = "SELECT * FROM users WHERE user=:user AND pass=:pass";
+
+        $select = $this->conexion->prepare($consulta);
+        $select->bindParam(':user', $user);
+        $select->bindParam(':pass', $pass);
+        $select->execute();
+        $registro = $select->fetch();
+        return $registro;
+    }
 }
-?>
