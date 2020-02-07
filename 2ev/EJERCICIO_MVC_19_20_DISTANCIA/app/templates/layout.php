@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <h2><?php echo $_SESSION['user']; ?></h2>
     <title>Información Alimentos</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="<?php echo 'css/' . Config::$mvc_vis_css ?>" />
@@ -11,6 +12,7 @@
 <body>
     <div id="cabecera">
         <h1>Información de alimentos</h1>
+        <h2><?php echo "hola"; ?></h2>
     </div>
 
     <div id="menu">

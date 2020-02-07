@@ -15,9 +15,7 @@ lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['
 */
 
 
-if (!isset($_SESSION)) {
-    $_SESSION['nivel'] = 0;
-}
+
 
 // enrutamiento
 $map = array(

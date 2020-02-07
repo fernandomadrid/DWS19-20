@@ -8,6 +8,9 @@ class Controller
     {
         $params['mensaje'] = "";
         $m = new Model;
+
+
+
         //Recojo y valido datos del formulario
         $user = recoge('user');
         $password = recoge('password')/*crypt_blowfish(recoge('password'))*/;
@@ -21,9 +24,8 @@ class Controller
 
                     $user = $m->registro['user'];
                     $nivel = $m->registro['nivel'];
-
+                    session_destroy();
                     $sesion = new Session($user, $nivel);
-
 
                     header('location: index.php?ctl=inicio');
                 } else {

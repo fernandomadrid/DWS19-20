@@ -10,6 +10,7 @@
 
 <body>
     <div id="cabecera">
+        <h2><?php echo $_SESSION['user']; ?></h2>
         <h1>LOGIN</h1>
 
     </div>

@@ -3,44 +3,43 @@
 
 class Session
 {
-    private $user;
-    private $nivel;
-    private $time;
+    public $user;
+    public $nivel;
 
-    function __construct($user, $nivel)
+
+    public function __construct($user, $nivel)
     {
         $this->user = $user;
         $this->nivel = $nivel;
         $this->time = time();
         session_start();
-
-
-        return $this->setSession();
+        $this->setSession();
     }
 
-    function setSession()
+    public function setSession()
     {
 
-        $_SESSION['nombre'] = $this->user;
+        $_SESSION['user'] = $this->user;
         $_SESSION['nivel'] = $this->nivel;
-        $_SESSION['time'] = time();
+        $_SESSION['time'] = $this->time;
     }
 
-    function getSession()
+    public function getTime()
     {
-        return $_SESSION;
+        return $_SESSION['time'];
     }
-
-
-
-    function time()
-
+    public static function getUser()
     {
-        return time();
+        return $_SESSION['user'];
+    }
+    public function getNivel()
+    {
+        return $_SESSION['nivel'];
     }
 
 
-    function cerrarSesion()
+
+    public function cerrarSesion()
     {
         session_destroy();
         return true;
