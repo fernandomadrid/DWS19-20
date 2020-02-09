@@ -3,45 +3,50 @@
 
 class Session
 {
-    public $user;
-    public $nivel;
 
 
-    public function __construct($user, $nivel)
+
+
+    public function init()
     {
-        $this->user = $user;
-        $this->nivel = $nivel;
-        $this->time = time();
         session_start();
-        $this->setSession();
     }
 
-    public function setSession()
+    public function setSession($user, $nivel)
     {
 
-        $_SESSION['user'] = $this->user;
-        $_SESSION['nivel'] = $this->nivel;
-        $_SESSION['time'] = $this->time;
+        $_SESSION['user'] = $user;
+        $_SESSION['nivel'] = $nivel;
+        $_SESSION['time'] = time();
     }
 
-    public function getTime()
+    public function get($key)
     {
-        return $_SESSION['time'];
+        return !empty($_SESSION[$key]) ? $_SESSION[$key] : null;
     }
-    public static function getUser()
+
+
+    public function getAll()
     {
-        return $_SESSION['user'];
+        return $_SESSION;
     }
-    public function getNivel()
+
+    public function remove($key)
     {
-        return $_SESSION['nivel'];
+        if (!empty($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+        }
     }
 
 
 
     public function cerrarSesion()
     {
+        session_unset();
         session_destroy();
-        return true;
+    }
+    public function getStatus()
+    {
+        return session_status();
     }
 }

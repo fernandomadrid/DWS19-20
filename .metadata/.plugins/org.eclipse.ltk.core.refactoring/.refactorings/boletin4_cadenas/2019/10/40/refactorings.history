@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;boletin4_cadenas/boletin4_cadenas_ej2&apos; to &apos;boletin4_cadenas_ej2.php&apos;" description="Rename resource &apos;boletin4_cadenas_ej2&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="boletin4_cadenas_ej2" name="boletin4_cadenas_ej2.php" stamp="1570180645116" updateReferences="true"/>
-</session>

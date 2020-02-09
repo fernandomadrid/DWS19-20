@@ -10,8 +10,17 @@
 
 <body>
     <div id="cabecera">
-        <h2><?php echo $_SESSION['user']; ?></h2>
+
         <h1>LOGIN</h1>
+        <h2><?php
+
+            if (empty($_SESSION)) {
+
+                $_SESSION['user'] = "Invitado";
+                $_SESSION['nivel'] = 0;
+            }
+            echo "Hola " . $_SESSION['user'];
+            ?></h2>
 
     </div>
     <div id="login">

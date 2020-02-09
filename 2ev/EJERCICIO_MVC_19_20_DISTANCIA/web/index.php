@@ -14,6 +14,11 @@ Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera 
 lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['nivel_usuario']=0
 */
 
+if (!isset($_SESSION)) {
+    session_start();
+    /*$_SESSION['user'] = "Invitado";
+    $_SESSION['nivel'] = 0;*/
+}
 
 
 
@@ -31,8 +36,10 @@ $map = array(
     'insertar' => array('controller' => 'Controller', 'action' => 'insertar', 'nivel' => 0),
     'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre', 'nivel' => 0),
     'ver' => array('controller' => 'Controller', 'action' => 'ver', 'nivel' => 0),
+    'salir' => array('controller' => 'Controller', 'action' => 'salir', 'nivel' => 0),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel' => 0)
 );
+
 
 // Parseo de la ruta
 if (isset($_GET['ctl'])) {
@@ -67,7 +74,18 @@ En caso de estar utilizando sesiones y permisos en las diferentes acciones compr
 */
 
 if (method_exists($controlador['controller'], $controlador['action'])) { //comprobar aqui si el usuario tiene el nivel suficiente para ejecutar la accion
+    //--------------control de nivel//
+
+    /* if ($map[$ruta]['nivel'] == $_SESSION['nivel']) {*/
     call_user_func(array(new $controlador['controller'], $controlador['action']));
+    /*} else {
+        header('Status: 404 Not Found');
+        echo '<html><body><h1>Error: No tiene privilegios para realizar esta acción.</h1></body></html>';
+    }*/
+
+
+
+    //--------------//
 } else {
     header('Status: 404 Not Found');
     echo '<html><body><h1>Error 404: El controlador <i>' .

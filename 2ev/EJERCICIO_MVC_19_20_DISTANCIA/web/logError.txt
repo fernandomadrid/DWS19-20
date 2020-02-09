@@ -7,3 +7,7 @@ Error 404: No existe la ruta dfcsdv
 Error 404: No existe la ruta fdbfdgfb
 Error 404: No existe la ruta register
 Error 404: No existe la ruta register
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+Error 404: No existe la ruta buscarAlimentosCombinada
+Error 404: No existe la ruta buscarAlimentosCombinada
+Error 404: No existe la ruta salir

@@ -8,24 +8,24 @@ class Controller
     {
         $params['mensaje'] = "";
         $m = new Model;
+        $sesion = new Session;
 
 
 
         //Recojo y valido datos del formulario
         $user = recoge('user');
-        $password = recoge('password')/*crypt_blowfish(recoge('password'))*/;
+        $password = recoge('password')/*crypt_blowfish(recoge('password')) No lo utilizo porque el campo para la contraseña está limitado a varchar(30) y se trunca el dato*/;
 
 
         if (isset($user) && isset($password)) { //compruebo si tengo datos 
 
             if (isset($_POST['bLogin'])) { // si se pulsa login
 
-                if ($m->SelectUser($user, $password)) {
+                if ($registro = $m->SelectUser($user, $password)) {
 
-                    $user = $m->registro['user'];
-                    $nivel = $m->registro['nivel'];
-                    session_destroy();
-                    $sesion = new Session($user, $nivel);
+                    $sesion->cerrarSesion();
+                    $sesion->init();
+                    $sesion->setSession($user, $registro['nivel']);
 
                     header('location: index.php?ctl=inicio');
                 } else {
@@ -35,14 +35,6 @@ class Controller
             }
         }
 
-        /*
-			si user está y pas correcto
-			inicio $_SESSION, nivel, usuario, y nombre
-			header a index ctl inicio*/
-
-
-        //sino 
-        //escribo mensaje en params
 
         require __DIR__ . '/templates/login.php';
     }
@@ -213,5 +205,11 @@ class Controller
 
 
         require __DIR__ . '/templates/verAlimento.php';
+    }
+
+    public function salir()
+    {
+        session_destroy();
+        header('Location: index.php?ctl=login');
     }
 }

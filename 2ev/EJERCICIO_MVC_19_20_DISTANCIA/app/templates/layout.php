@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <h2><?php echo $_SESSION['user']; ?></h2>
+
     <title>Información Alimentos</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="<?php echo 'css/' . Config::$mvc_vis_css ?>" />
@@ -12,7 +12,7 @@
 <body>
     <div id="cabecera">
         <h1>Información de alimentos</h1>
-        <h2><?php echo "hola"; ?></h2>
+        <h2><?php echo "hola " . $_SESSION['user']; ?></h2>
     </div>
 
     <div id="menu">
@@ -22,7 +22,7 @@
         <a href="index.php?ctl=insertar">insertar alimento</a> |
         <a href="index.php?ctl=buscar">buscar por nombre</a> |
         <a href="index.php?ctl=buscarAlimentosPorEnergia">buscar por energia</a> |
-        <a href="index.php?ctl=buscarAlimentosCombinada">búsqueda combinada</a>
+        <a href="index.php?ctl=salir">Salir</a>
         <hr />
     </div>
 

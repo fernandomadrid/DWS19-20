@@ -11,8 +11,3 @@ try {
     echo "<p>Error: No puede conectarse con la base de datos.</p>\n";
     echo "<p>Error: " . $e->getMessage();
 }
-
-
-
-
-?>
