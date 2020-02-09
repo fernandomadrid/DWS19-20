@@ -39,14 +39,18 @@ class Model extends PDO
 
     public function buscarAlimentosPorEnergia($energia)
     {
+        try{
+            $consulta = "select * from alimentos where energia like :energia order by nombre desc";
 
-        $consulta = "select * from alimentos where energia=:valor";
+            $result = $this->conexion->prepare($consulta);
+            $result->bindParam(':energia', $energia);
+            $result->execute();
 
-        $result = $this->conexion->prepare($consulta);
-        $result->bindParam(':energia', $energia);
-        $result->execute();
-
-        return $result->fetchAll();
+            return $result->fetchAll();
+        }catch(PDOException $e){
+            echo "<p>Error: " . $e->getMessage();
+        }
+        
     }
 
     public function dameAlimento($id)

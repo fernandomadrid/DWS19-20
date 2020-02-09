@@ -12,12 +12,14 @@ class Session
         session_start();
     }
 
-    public function setSession($user, $nivel)
+    public function setSession($user, $nivel, $ciudad, $temperatura)
     {
 
         $_SESSION['user'] = $user;
         $_SESSION['nivel'] = $nivel;
         $_SESSION['time'] = time();
+        $_SESSION['ciudad'] = $ciudad;
+        $_SESSION['temp'] = $temperatura;
     }
 
     public function get($key)

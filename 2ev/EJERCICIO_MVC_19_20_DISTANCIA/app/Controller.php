@@ -3,6 +3,7 @@ include('libs/utils.php');
 include('libs/sessionClass.php');
 include('libs/enviaMail.php');
 
+
 class Controller
 {
     public function login()
@@ -25,14 +26,16 @@ class Controller
 
                 if ($registro = $m->SelectUser($user, $password)) {
 
-                    $sesion->cerrarSesion();
-                    $sesion->init();
-                    $sesion->setSession($user, $registro['nivel']);
+                    $sesion->cerrarSesion(); //cierra sesion de invitado
+                    $sesion->init(); //inicia sesion de usuario registrado
 
+                    include('libs/clima.php'); //archivo con la funcion API del tiempo
+                    $temperatura = weather($registro['ciudad']); //llamada a la función que retorna la temperatura de la ciudad
+                    $sesion->setSession($user, $registro['nivel'], $registro['ciudad'], $temperatura); //establece el user, el nivel a la sesion, la ciudad y la temperatura
                     header('location: index.php?ctl=inicio');
                 } else {
 
-                    $params['mensaje'] = 'El usuario no está registrado';
+                    $params['mensaje'] = 'Usuario o contraseña incorrectos.';
                 }
             }
         }

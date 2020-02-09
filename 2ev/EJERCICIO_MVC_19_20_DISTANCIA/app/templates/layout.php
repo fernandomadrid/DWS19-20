@@ -11,8 +11,11 @@
 
 <body>
     <div id="cabecera">
-        <h1>Información de alimentos</h1>
+
+
+        <h2 style="text-align: right"><?php echo $_SESSION['ciudad'] . ", " . $_SESSION['temp'] . "ºC"; ?> </h2>
         <h2><?php echo "hola " . $_SESSION['user']; ?></h2>
+        <h1>Información de alimentos</h1>
     </div>
 
     <div id="menu">
