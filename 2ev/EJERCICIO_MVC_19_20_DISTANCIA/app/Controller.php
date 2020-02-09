@@ -70,7 +70,7 @@ class Controller
     {
         $params = array(
             'mensaje' => 'Bienvenido al repositorio de alimentos',
-            'fecha' => date('d-m-yyy')
+            'fecha' => date('d-m-yy')
         );
         require __DIR__ . '/templates/inicio.php';
     }

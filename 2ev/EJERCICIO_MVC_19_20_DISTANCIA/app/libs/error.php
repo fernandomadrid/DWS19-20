@@ -1,2 +1,2 @@
 <?php
-echo"Lo siento ha habido un error";
+echo "No tiene privilegios para realizar esta acción";

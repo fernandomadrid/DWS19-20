@@ -75,12 +75,14 @@ En caso de estar utilizando sesiones y permisos en las diferentes acciones compr
 if (method_exists($controlador['controller'], $controlador['action'])) { //comprobar aqui si el usuario tiene el nivel suficiente para ejecutar la accion
     //--------------control de nivel//
 
-    /* if ($map[$ruta]['nivel'] == $_SESSION['nivel']) {*/
-    call_user_func(array(new $controlador['controller'], $controlador['action']));
-    /*} else {
-        header('Status: 404 Not Found');
-        echo '<html><body><h1>Error: No tiene privilegios para realizar esta acción.</h1></body></html>';
-    }*/
+    if ($map[$ruta]['nivel'] <= $sesion->get('nivel')) {
+        call_user_func(array(new $controlador['controller'], $controlador['action']));
+    } else {
+
+
+        header('location: index.php?ctl=error');
+        //echo '<html><body><h1>Error: No tiene privilegios para realizar esta acción.</h1></body></html>';
+    }
 
 
 
