@@ -37,7 +37,8 @@ $map = array(
     'buscarAlimentosPorEnergia' => array('controller' => 'Controller', 'action' => 'buscarAlimentosPorEnergia', 'nivel' => 1),
     'ver' => array('controller' => 'Controller', 'action' => 'ver', 'nivel' => 1),
     'salir' => array('controller' => 'Controller', 'action' => 'salir', 'nivel' => 0),
-    'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel' => 0)
+    'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel' => 0),
+    'errorderuta' => array('controller' => 'Controller', 'action' => 'errorderuta', 'nivel' => 0)
 );
 
 
@@ -58,7 +59,8 @@ if (isset($_GET['ctl'])) {
             //Si el valor puesto en ctl en la URL no existe en el array de mapeo escribe en el fichero logError.txt y envía una cabecera de error
             $errorMensaje = "Error 404: No existe la ruta " . $_GET['ctl'];
             errorsLog($errorMensaje);
-            //header('../../app/libs/error.php');
+            $contenido = '<html><body><h1>Error 404: No existe la ruta <i>' . $_GET['ctl'] . '</p></body></html>';
+            header('location: index.php?ctl=errorderuta');
             $contenido = '<html><body><h1>Error 404: No existe la ruta <i>' . $_GET['ctl'] . '</p></body></html>';
             exit;
         }

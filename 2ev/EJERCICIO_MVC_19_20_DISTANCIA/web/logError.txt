@@ -28,3 +28,8 @@ tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero s
 tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
 tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
 tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+Error 404: No existe la ruta ini
+Error 404: No existe la ruta inici
+Error 404: No existe la ruta i
+Error 404: No existe la ruta ini
+Error 404: No existe la ruta inic

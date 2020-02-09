@@ -85,6 +85,10 @@ class Controller
     {
         require __DIR__ . '/templates/error.php';
     }
+    public function errorDeRuta()
+    {
+        require __DIR__ . '/templates/errorderuta.php';
+    }
 
     public function listar()
     {
