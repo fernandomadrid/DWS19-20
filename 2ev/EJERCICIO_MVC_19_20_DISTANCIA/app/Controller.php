@@ -1,6 +1,7 @@
 <?php
 include('libs/utils.php');
 include('libs/sessionClass.php');
+include('libs/enviaMail.php');
 
 class Controller
 {
@@ -9,6 +10,7 @@ class Controller
         $params['mensaje'] = "";
         $m = new Model;
         $sesion = new Session;
+
 
 
 
@@ -45,17 +47,18 @@ class Controller
         //Recojo y valido datos del formulario
         $user = recoge('user');
         $password = recoge('password') /*crypt_blowfish(recoge('password'))*/;
-        $nivel = 1;
+        //$nivel = 1;
         $email = recoge('email');
         $ciudad = recoge('ciudad');
         if (isset($user) && isset($password) && _email($email) && isset($ciudad)) { //compruebo si tengo datos y si el email es correcto
 
             if (isset($_POST['bRegister'])) { //si se pulsa registrar
 
-                //si correcto{
-                //llamar modelo
                 if ($m->InsertUser($user, $password, $email, $ciudad)) {
                     $params['mensaje'] = 'Registrado con éxito.';
+
+                    enviaMail($email);
+
                     header('Location: index.php?ctl=login');
                 } else {
 
@@ -183,6 +186,30 @@ class Controller
     }
 
 
+    public function buscarAlimentosPorEnergia()
+    {
+        try {
+            $params = array(
+                'energia' => '',
+                'resultado' => array()
+            );
+            $m = new Model();
+            if (isset($_POST['buscar'])) {
+                $energia = recoge("energia");
+                $params['energia'] = $energia;
+                $params['resultado'] = $m->buscarAlimentosPorEnergia($energia);
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            header('Location: index.php?ctl=error');
+        }
+        require __DIR__ . '/templates/buscarPorEnergia.php';
+    }
+
+
 
     public function ver()
     {
@@ -207,9 +234,37 @@ class Controller
         require __DIR__ . '/templates/verAlimento.php';
     }
 
+
+
     public function salir()
     {
         session_destroy();
         header('Location: index.php?ctl=login');
+    }
+
+
+    public function email($email)
+    {
+
+        $para = $email; //aquí mail del registrado
+        $asunto = "Alta repositorio de alimentos";
+        $mensaje = "<hr>";
+        $mensaje .= "<h2>Bienvenido al repositorio de alimentos </h2><br>";
+        $mensaje .= "<hr>";
+
+        // Para enviar correo HTML, la cabecera Content-type debe definirse
+        $cabeceras  = "MIME-Version: 1.0\n";
+        $cabeceras .= "Content-type: text/html; charset=UTF-8\n";
+
+        // Cabeceras adicionales
+        $cabeceras .= "From: Tony <mail@yahoo.es>\n";
+        $cabeceras .= "To: Tony <tony3fk@gmail.com>\n";
+        $cabeceras .= "Reply-To: mail@gmail.com\n";
+        $cabeceras .= "X-Mailer: PHP/" . phpversion();
+
+        // Enviarlo
+        if (mail($para, $asunto, $mensaje, $cabeceras)) {
+            return true;
+        }
     }
 }

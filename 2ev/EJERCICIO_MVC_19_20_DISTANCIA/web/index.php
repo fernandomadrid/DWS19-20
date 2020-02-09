@@ -34,6 +34,7 @@ $map = array(
     'listar' => array('controller' => 'Controller', 'action' => 'listar', 'nivel' => 1),
     'insertar' => array('controller' => 'Controller', 'action' => 'insertar', 'nivel' => 2),
     'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre', 'nivel' => 1),
+    'buscarAlimentosPorEnergia' => array('controller' => 'Controller', 'action' => 'buscarAlimentosPorEnergia', 'nivel' => 1),
     'ver' => array('controller' => 'Controller', 'action' => 'ver', 'nivel' => 1),
     'salir' => array('controller' => 'Controller', 'action' => 'salir', 'nivel' => 0),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel' => 0)
@@ -79,7 +80,8 @@ if (method_exists($controlador['controller'], $controlador['action'])) { //compr
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
 
-
+        $errorMensaje = $sesion->get('user') . " No tienes perniso para realizar esta acción. Se requiere un nivel " . $map[$ruta]['nivel'] . " pero sólo tienes nivel " . $sesion->get('nivel');
+        errorsLog($errorMensaje);
         header('location: index.php?ctl=error');
         //echo '<html><body><h1>Error: No tiene privilegios para realizar esta acción.</h1></body></html>';
     }

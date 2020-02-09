@@ -2,9 +2,10 @@
 
 <div class="row">
 
-<h3> Ha habido un error </h3>
+    <h3> Ha habido un error </h3>
 
 
-<?php $contenido = ob_get_clean() ?>
 
-<?php include 'layout.php' ?>
+    <?php $contenido = ob_get_clean() ?>
+
+    <?php include 'layout.php' ?>

@@ -37,6 +37,18 @@ class Model extends PDO
         return $result->fetchAll();
     }
 
+    public function buscarAlimentosPorEnergia($energia)
+    {
+
+        $consulta = "select * from alimentos where energia=:valor";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':energia', $energia);
+        $result->execute();
+
+        return $result->fetchAll();
+    }
+
     public function dameAlimento($id)
     {
 
@@ -78,7 +90,7 @@ class Model extends PDO
         return $insert;
     }
 
-
+    //devuelve el usuario logueado si existe
     function SelectUser($user, $pass)
     {
         $consulta = "SELECT * FROM users WHERE user=:user AND pass=:pass";

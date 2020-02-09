@@ -11,3 +11,20 @@ Error 404: No existe la ruta buscarAlimentosPorEnergia
 Error 404: No existe la ruta buscarAlimentosCombinada
 Error 404: No existe la ruta buscarAlimentosCombinada
 Error 404: No existe la ruta salir
+No tienes perniso para realizar esta acción.
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+Error 404: No existe la ruta buscarAlimentosPorEnergia
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
