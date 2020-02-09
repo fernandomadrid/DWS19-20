@@ -14,11 +14,10 @@ Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera 
 lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['nivel_usuario']=0
 */
 
-if (!isset($_SESSION)) {
-    session_start();
-    /*$_SESSION['user'] = "Invitado";
-    $_SESSION['nivel'] = 0;*/
-}
+$sesion = new Session;
+$sesion->init();
+
+
 
 
 
@@ -31,11 +30,11 @@ $map = array(
     */
     'login' => array('controller' => 'Controller', 'action' => 'login', 'nivel' => 0),
     'register' => array('controller' => 'Controller', 'action' => 'register', 'nivel' => 0),
-    'inicio' => array('controller' => 'Controller', 'action' => 'inicio', 'nivel' => 0),
-    'listar' => array('controller' => 'Controller', 'action' => 'listar', 'nivel' => 0),
-    'insertar' => array('controller' => 'Controller', 'action' => 'insertar', 'nivel' => 0),
-    'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre', 'nivel' => 0),
-    'ver' => array('controller' => 'Controller', 'action' => 'ver', 'nivel' => 0),
+    'inicio' => array('controller' => 'Controller', 'action' => 'inicio', 'nivel' => 1),
+    'listar' => array('controller' => 'Controller', 'action' => 'listar', 'nivel' => 1),
+    'insertar' => array('controller' => 'Controller', 'action' => 'insertar', 'nivel' => 2),
+    'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre', 'nivel' => 1),
+    'ver' => array('controller' => 'Controller', 'action' => 'ver', 'nivel' => 1),
     'salir' => array('controller' => 'Controller', 'action' => 'salir', 'nivel' => 0),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel' => 0)
 );
