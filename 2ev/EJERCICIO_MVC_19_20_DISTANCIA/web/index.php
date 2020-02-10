@@ -6,6 +6,10 @@ require_once __DIR__ . '/../app/Model.php';
 require_once __DIR__ . '/../app/Controller.php';
 require_once __DIR__ . '../../app/libs/sessionClass.php';
 
+ini_set("session.use_trans_sid", "0");
+ini_set("session.use_only_cookies", "1");
+session_set_cookie_params(0, "/", $_SERVER["HTTP_HOST"], 0); //se supone que esto cierra la sesion al cerrar el navegador, pero no.
+
 
 
 
@@ -16,6 +20,14 @@ lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['
 
 $sesion = new Session;
 $sesion->init();
+
+
+
+/*if ($sesion->inactividad()) {
+    $sesion->cerrarSesion();
+    header('location: index.php?ctl=login'); //redireccionar a una pagina de sesion expirada
+}*/
+
 
 
 
@@ -39,7 +51,10 @@ $map = array(
     'salir' => array('controller' => 'Controller', 'action' => 'salir', 'nivel' => 0),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel' => 0),
     'errorderuta' => array('controller' => 'Controller', 'action' => 'errorderuta', 'nivel' => 0)
+
 );
+
+
 
 
 // Parseo de la ruta
@@ -75,6 +90,7 @@ En aso de no existir cabecera de error.
 En caso de estar utilizando sesiones y permisos en las diferentes acciones comprobariaos tambien si el usuario tiene permiso suficiente para ejecutar esa acción
 */
 
+
 if (method_exists($controlador['controller'], $controlador['action'])) { //comprobar aqui si el usuario tiene el nivel suficiente para ejecutar la accion
     //--------------control de nivel//
 
@@ -99,3 +115,10 @@ if (method_exists($controlador['controller'], $controlador['action'])) { //compr
         $controlador['action'] .
         '</i> no existe</h1></body></html>';
 }
+
+
+
+
+
+
+//} while (!$sesion->inactividad());

@@ -4,9 +4,6 @@
 class Session
 {
 
-
-
-
     public function init()
     {
         session_start();
@@ -14,7 +11,7 @@ class Session
 
     public function setSession($user, $nivel, $ciudad, $temperatura)
     {
-
+        session_name($user);
         $_SESSION['user'] = $user;
         $_SESSION['nivel'] = $nivel;
         $_SESSION['time'] = time();
@@ -49,6 +46,18 @@ class Session
     }
     public function getStatus()
     {
-        return session_status();
+        return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+    }
+
+    public function inactividad()
+    {
+        $tiempo_inactividad = 10;
+        if (time() - $this->get("'time'") >= $tiempo_inactividad) {
+            $this->cerrarSesion();
+            return true;
+        } else {
+            $_SESSION['time'] = time();
+            return false;
+        }
     }
 }

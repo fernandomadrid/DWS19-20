@@ -6,6 +6,8 @@ include('libs/enviaMail.php');
 
 class Controller
 {
+
+
     public function login()
     {
         $params['mensaje'] = "";
@@ -90,6 +92,7 @@ class Controller
         require __DIR__ . '/templates/errorderuta.php';
     }
 
+
     public function listar()
     {
         try {
@@ -97,6 +100,8 @@ class Controller
             $params = array(
                 'alimentos' => $m->dameAlimentos()
             );
+
+
 
             // Recogemos los dos tipos de excepciones que se pueden producir
         } catch (Exception $e) {
