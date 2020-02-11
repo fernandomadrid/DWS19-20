@@ -12,6 +12,36 @@
  * 
  * 
  * $validacion = new Validacion();
+$regla = array(
+ array(
+ 'name' => 'nombre',
+ 'regla' => 'no-empty,letras'
+ ),
+ array(
+ 'name' => 'energia',
+ 'regla' => 'no-empty,numeric'
+ ),
+ array(
+ 'name' => 'proteina',
+ 'regla' => 'numeric'
+ ),array(
+ 'name' => 'hc',
+ 'regla' => 'numeric'
+ ),array(
+ 'name' => 'fibra',
+ 'regla' => 'numeric'
+ ),array(
+ 'name' => 'grasa',
+ 'regla' => 'numeric'
+ )
+
+ );
+
+
+
+
+
+
  $regla = array(
  array(
  'name' => 'campo2',

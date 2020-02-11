@@ -4,6 +4,7 @@ include('libs/sessionClass.php');
 include('libs/enviaMail.php');
 
 
+
 class Controller
 {
 
@@ -13,9 +14,6 @@ class Controller
         $params['mensaje'] = "";
         $m = new Model;
         $sesion = new Session;
-
-
-
 
         //Recojo y valido datos del formulario
         $user = recoge('user');
@@ -45,6 +43,13 @@ class Controller
 
         require __DIR__ . '/templates/login.php';
     }
+
+
+
+
+
+
+
     function register()
     {
         $params['mensaje'] = "";
@@ -52,7 +57,7 @@ class Controller
         //Recojo y valido datos del formulario
         $user = recoge('user');
         $password = recoge('password') /*crypt_blowfish(recoge('password'))*/;
-        //$nivel = 1;
+
         $email = recoge('email');
         $ciudad = recoge('ciudad');
         if (isset($user) && isset($password) && _email($email) && isset($ciudad)) { //compruebo si tengo datos y si el email es correcto
@@ -73,6 +78,8 @@ class Controller
         }
         require __DIR__ . '/templates/register.php';
     }
+
+
 
     public function inicio()
     {
@@ -103,8 +110,6 @@ class Controller
                 'alimentos' => $m->dameAlimentos()
             );
 
-
-
             // Recogemos los dos tipos de excepciones que se pueden producir
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
@@ -119,6 +124,9 @@ class Controller
     public function insertar()
     {
         try {
+
+
+
             $params = array(
                 'nombre' => '',
                 'energia' => '',
