@@ -51,9 +51,10 @@ class Session
 
     public function inactividad()
     {
-        $tiempo_inactividad = 10;
-        if (time() - $this->get("'time'") >= $tiempo_inactividad) {
-            $this->cerrarSesion();
+
+        if (time() - $_SESSION['time'] > 900) { //tiempo de inactividad 15 minutos.
+
+            session_destroy();
             return true;
         } else {
             $_SESSION['time'] = time();

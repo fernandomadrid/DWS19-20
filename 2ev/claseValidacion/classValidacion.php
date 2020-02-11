@@ -45,7 +45,7 @@ class Validacion
      */
     public function rules($rule = array(), $data)
     {
-        if (! is_array($rule)) {
+        if (!is_array($rule)) {
             $this->mensaje = "las reglas deben de estar en formato de arreglo";
             return $this;
         }
@@ -57,10 +57,7 @@ class Validacion
                         foreach ($reglas as $clave => $valores) {
                             //Llamamos a _getInflectedName para montar el nombre del método al que tenemos que llamar
                             $validator = $this->_getInflectedName($valores);
-                            if (! is_callable(array(
-                                $this,
-                                $validator
-                            ))) {
+                            if (!is_callable(array($this, $validator))) {
                                 //Si la regla no existe enviamos una excepción
                                 throw new BadMethodCallException("No se encontro el metodo $valores");
                             }
@@ -70,13 +67,13 @@ class Validacion
                     }
                 }
             } else {
-                   //Sino hay coincidencia en los nombres de los campos enviados en $data y $rule
-                   //guardamos un error tambien podríamos enviar una excepción como hacemos en el caso
-                   //de que no haya coincidencia en la regla
+                //Sino hay coincidencia en los nombres de los campos enviados en $data y $rule
+                //guardamos un error tambien podríamos enviar una excepción como hacemos en el caso
+                //de que no haya coincidencia en la regla
                 $this->mensaje[$rules['name']] = "el campo {$rules['name']} no esta dentro de la regla de validación o en el formulario";
             }
         }
-        if (! empty($this->mensaje)) {
+        if (!empty($this->mensaje)) {
             return $this;
         } else {
             return true;
@@ -115,8 +112,7 @@ class Validacion
      */
     protected function _noEmpty($campo, $valor)
     {
-        if ($valor != "") 
-        {
+        if ($valor != "") {
             return true;
         } else {
             $this->mensaje[$campo][] = "el campo $campo debe de estar lleno";
@@ -150,7 +146,7 @@ class Validacion
         }
     }
 
-  
+
 
     /**
      * Metodo de verificacion de tipo email
@@ -168,5 +164,3 @@ class Validacion
         }
     }
 }
-
-?>

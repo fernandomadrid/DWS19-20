@@ -8,7 +8,8 @@ require_once __DIR__ . '../../app/libs/sessionClass.php';
 
 ini_set("session.use_trans_sid", "0");
 ini_set("session.use_only_cookies", "1");
-session_set_cookie_params(0, "/", $_SERVER["HTTP_HOST"], 0); //se supone que esto cierra la sesion al cerrar el navegador, pero no.
+
+session_set_cookie_params(0, "/", $_SERVER["HTTP_HOST"], 0); //Esta configuración cierra la sesion al cerrar el navegador.
 
 
 
@@ -22,12 +23,13 @@ $sesion = new Session;
 $sesion->init();
 
 
+//comprobación de inactividad para cerrar sesion
+if (isset($_SESSION['time'])) {
+    if ($sesion->inactividad()) {
 
-/*if ($sesion->inactividad()) {
-    $sesion->cerrarSesion();
-    header('location: index.php?ctl=login'); //redireccionar a una pagina de sesion expirada
-}*/
-
+        echo "<script> alert('Se cerro la sesion por inactividad.'); window.location= 'index.php?ctl=login' </script>"; //se lanza un alert y se redirecciona a la página de login
+    }
+}
 
 
 

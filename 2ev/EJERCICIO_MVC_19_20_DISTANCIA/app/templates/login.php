@@ -20,6 +20,7 @@
                 $_SESSION['nivel'] = 0;
             }
             echo "Hola " . $_SESSION['user'];
+
             ?></h2>
 
     </div>
