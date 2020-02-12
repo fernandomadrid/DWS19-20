@@ -13,33 +13,61 @@ class Controller
     public function login()
     {
         $params['mensaje'] = "";
-        $m = new Model;
-        $sesion = new Session;
+        $params['user'] = recoge("user");
+        $params['password'] = recoge('password');
+        try {
+            $validacion = new Validacion();
+            $regla = array(
+                array(
+                    'name' => 'user',
+                    'regla' => 'no-empty,letras'
+                ),
+                array(
+                    'name' => 'password',
+                    'regla' => 'no-empty'
+                )
 
-        //Recojo y valido datos del formulario
-        $user = recoge('user');
-        $password = recoge('password')/*crypt_blowfish(recoge('password')) No lo utilizo porque el campo para la contraseña está limitado a varchar(30) y se trunca el dato*/;
+            );
+
+            $validaciones = $validacion->rules($regla, $params);
+            // La clase nos devolverá true si no ha habido errores y un objeto con que incluye los errores en un array
 
 
-        if (isset($user) && isset($password)) { //compruebo si tengo datos 
+            // Si no ha habido problema creo modelo y hago inserción
+            if ($validaciones === true) {
 
-            if (isset($_POST['bLogin'])) { // si se pulsa login
+                $m = new Model();
+                $sesion = new Session; //creo sesion
 
-                if ($registro = $m->SelectUser($user, $password)) {
 
-                    $sesion->cerrarSesion(); //cierra sesion de invitado
-                    $sesion->init(); //inicia sesion de usuario registrado
+                if (isset($_POST['bLogin'])) { // si se pulsa login
 
-                    include('libs/clima.php'); //archivo con la funcion API del tiempo
-                    $temperatura = weather($registro['ciudad']); //llamada a la función que retorna la temperatura de la ciudad
-                    $sesion->setSession($user, $registro['nivel'], $registro['ciudad'], $temperatura); //establece el user, el nivel a la sesion, la ciudad y la temperatura
-                    header('location: index.php?ctl=inicio');
-                } else {
+                    if ($registro = $m->SelectUser($params)) {
 
-                    $params['mensaje'] = 'Usuario o contraseña incorrectos.';
+                        $sesion->cerrarSesion(); //cierra sesion de invitado
+                        $sesion->init(); //inicia sesion de usuario registrado
+
+                        include('libs/clima.php'); //archivo con la funcion API del tiempo
+                        $temperatura = weather($registro['ciudad']); //llamada a la función que retorna la temperatura de la ciudad
+                        $sesion->setSession($params['user'], $registro['nivel'], $registro['ciudad'], $temperatura); //establece el user, el nivel a la sesion, la ciudad y la temperatura
+                        header('location: index.php?ctl=inicio');
+                    } else {
+
+                        $params['mensaje'] = 'Usuario o contraseña incorrectos.';
+                    }
                 }
             }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            header('Location: index.php?ctl=error');
         }
+
+
+
+
 
 
         require __DIR__ . '/templates/login.php';
@@ -54,30 +82,67 @@ class Controller
     function register()
     {
         $params['mensaje'] = "";
-        $m = new Model;
-        //Recojo y valido datos del formulario
-        $user = recoge('user');
-        $password = recoge('password') /*crypt_blowfish(recoge('password'))*/;
 
-        $email = recoge('email');
-        $ciudad = recoge('ciudad');
-        if (isset($user) && isset($password) && _email($email) && isset($ciudad)) { //compruebo si tengo datos y si el email es correcto
+        $params['user'] = recoge("user");
+        $params['password'] = recoge('password');
+        $params['email'] = recoge("email");
+        $params['ciudad'] = recoge('ciudad');
 
-            if (isset($_POST['bRegister'])) { //si se pulsa registrar
+        try {
+            $validacion = new Validacion();
+            $regla = array(
+                array(
+                    'name' => 'user',
+                    'regla' => 'no-empty,letras'
+                ),
+                array(
+                    'name' => 'password',
+                    'regla' => 'no-empty'
+                ),
+                array(
+                    'name' => 'email',
+                    'regla' => 'no-empty,email'
+                ),
+                array(
+                    'name' => 'ciudad',
+                    'regla' => 'no-empty,letras'
+                )
 
-                if ($m->InsertUser($user, $password, $email, $ciudad)) {
-                    $params['mensaje'] = 'Registrado con éxito.';
+            );
 
-                    enviaMail($email);
+            $validaciones = $validacion->rules($regla, $params);
+            // La clase nos devolverá true si no ha habido errores y un objeto con que incluye los errores en un array
 
-                    header('Location: index.php?ctl=login');
-                } else {
-
-                    $params['mensaje'] = 'No se ha podido registrar el usuario o ya existe.';
-                }
-            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+            header('Location: index.php?ctl=error');
         }
-        require '/templates/register.php';
+        // Si no ha habido problema creo modelo y hago inserción
+        if ($validaciones === true) {
+
+            $m = new Model();
+            if ($m->InsertUser($params)) {
+                header('location: index.php?ctl=login');
+            } else {
+
+                header('Location: index.php?ctl=error');
+
+                $_SESSION['message'] = 'No se ha podido insertar el alimento. Revisa el formulario';
+            }
+        } else {
+
+            // Ahora nos sirve para ver lo que devuelve la clase
+            echo "<pre>";
+            print_r($validaciones);
+            echo "</pre><br>";
+        }
+
+
+
+        require __DIR__ . '/templates/register.php';
     }
 
 

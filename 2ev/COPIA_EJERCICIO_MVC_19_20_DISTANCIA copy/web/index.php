@@ -100,9 +100,9 @@ if (method_exists($controlador['controller'], $controlador['action'])) { //compr
         call_user_func(array(new $controlador['controller'], $controlador['action']));
     } else {
 
-        $errorMensaje = $sesion->get('user') . " No tienes permiso para realizar esta acción. Se requiere un nivel " . $map[$ruta]['nivel'] . " pero sólo tienes nivel " . $sesion->get('nivel');
+        $errorMensaje = $sesion->get('user') . ", no tienes permiso para realizar esta acción. Se requiere un nivel " . $map[$ruta]['nivel'] . " pero sólo tienes nivel " . $sesion->get('nivel');
         error_log($errorMensaje . "-" . microtime() . PHP_EOL, 3, "logError.txt");
-        $params['mensaje'] = $errorMensaje;
+        $_SESSION['message'] = $errorMensaje;
         require_once '../app/templates/error.php';
     }
 } else {

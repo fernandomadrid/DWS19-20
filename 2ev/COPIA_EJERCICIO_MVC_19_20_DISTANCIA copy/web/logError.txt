@@ -129,3 +129,10 @@ Class 'Validacion' not found0.91841900 1581530590
 Class 'Validacion' not found0.09555100 1581530705
 Class 'Validacion' not found0.59489400 1581530844
 Class 'Validacion' not found0.61574500 1581530927
+tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.70288300 1581532955
+tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.72258100 1581532961
+tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.88496700 1581533024
+tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.73457900 1581533026
+tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.37210600 1581533132
+tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.60423400 1581533138
+tony, no tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.27576500 1581533161

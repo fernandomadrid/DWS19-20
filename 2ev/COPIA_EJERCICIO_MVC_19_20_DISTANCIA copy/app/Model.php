@@ -80,27 +80,27 @@ class Model extends PDO
     }
 
     //funcion para insertar nuevos usuarios
-    function InsertUser($user, $pass, $email, $ciudad)
+    function InsertUser(array $params)
     {
 
         $consulta = "INSERT INTO users (user, pass, nivel, email, ciudad) VALUES (:user, :pass, 1, :email,:ciudad)";
         $insert = $this->conexion->prepare($consulta);
-        $insert->bindParam(':user', $user);
-        $insert->bindParam(':pass', $pass);
-        $insert->bindParam('email', $email);
-        $insert->bindParam('ciudad', $ciudad);
+        $insert->bindParam(':user', $params['user']);
+        $insert->bindParam(':pass', $params['password']);
+        $insert->bindParam('email', $params['email']);
+        $insert->bindParam('ciudad', $params['ciudad']);
         $insert->execute();
         return $insert;
     }
 
     //devuelve el usuario logueado si existe
-    function SelectUser($user, $pass)
+    function SelectUser(array $params)
     {
         $consulta = "SELECT * FROM users WHERE user=:user AND pass=:pass";
 
         $select = $this->conexion->prepare($consulta);
-        $select->bindParam(':user', $user);
-        $select->bindParam(':pass', $pass);
+        $select->bindParam(':user', $params['user']);
+        $select->bindParam(':pass', $params['password']);
         $select->execute();
         $registro = $select->fetch();
         return $registro;
