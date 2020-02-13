@@ -31,10 +31,6 @@ if (isset($_SESSION['time'])) {
     }
 }
 
-
-
-
-
 // enrutamiento
 $map = array(
     /*

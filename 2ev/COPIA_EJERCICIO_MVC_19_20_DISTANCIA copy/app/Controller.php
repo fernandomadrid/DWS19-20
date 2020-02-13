@@ -12,6 +12,7 @@ class Controller
 
     public function login()
     {
+        session_unset(); //elimina los datos de sesion que hayan
         $params['mensaje'] = "";
         $params['user'] = recoge("user");
         $params['password'] = recoge('password');
@@ -67,9 +68,6 @@ class Controller
 
 
 
-
-
-
         require __DIR__ . '/templates/login.php';
     }
 
@@ -113,6 +111,21 @@ class Controller
             $validaciones = $validacion->rules($regla, $params);
             // La clase nos devolverá true si no ha habido errores y un objeto con que incluye los errores en un array
 
+            // Si no ha habido problema creo modelo y hago inserción
+            if ($validaciones === true) {
+
+                $m = new Model();
+                if ($m->InsertUser($params)) {
+
+
+                    header('location: index.php?ctl=login');
+                } else {
+
+                    header('Location: index.php?ctl=error');
+
+                    $_SESSION['message'] = 'No se ha podido registrar el usuario. Revisa el formulario';
+                }
+            }
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
             header('Location: index.php?ctl=error');
@@ -120,25 +133,10 @@ class Controller
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
             header('Location: index.php?ctl=error');
         }
-        // Si no ha habido problema creo modelo y hago inserción
-        if ($validaciones === true) {
 
-            $m = new Model();
-            if ($m->InsertUser($params)) {
-                header('location: index.php?ctl=login');
-            } else {
 
-                header('Location: index.php?ctl=error');
 
-                $_SESSION['message'] = 'No se ha podido insertar el alimento. Revisa el formulario';
-            }
-        } else {
 
-            // Ahora nos sirve para ver lo que devuelve la clase
-            echo "<pre>";
-            print_r($validaciones);
-            echo "</pre><br>";
-        }
 
 
 

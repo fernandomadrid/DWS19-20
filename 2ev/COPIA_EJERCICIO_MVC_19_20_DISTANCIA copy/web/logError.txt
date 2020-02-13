@@ -136,3 +136,6 @@ tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero s
 tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.37210600 1581533132
 tony No tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.60423400 1581533138
 tony, no tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.27576500 1581533161
+Invitado, no tienes permiso para realizar esta acción. Se requiere un nivel 1 pero sólo tienes nivel -0.03340800 1581534050
+Invitado, no tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel -0.46516800 1581534051
+tony, no tienes permiso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1-0.33597100 1581609347

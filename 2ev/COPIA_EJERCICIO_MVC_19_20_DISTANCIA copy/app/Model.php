@@ -17,10 +17,10 @@ class Model extends PDO
 
 
 
-    public function dameAlimentos()
+    public function dameAlimentos() //consulta sin parametrizar
     {
 
-        $consulta = "select * from alimentos order by energia desc";
+        $consulta = "SELECT * FROM alimentos ORDER BY energia DESC";
         $result = $this->conexion->query($consulta);
         return $result->fetchAll();
     }
@@ -28,24 +28,20 @@ class Model extends PDO
     public function buscarAlimentosPorNombre($nombre)
     {
 
-        $consulta = "select * from alimentos where nombre like :nombre order by energia desc";
-
+        $consulta = "SELECT * FROM alimentos WHERE nombre LIKE :nombre ORDER BY energia DESC";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':nombre', $nombre);
         $result->execute();
-
         return $result->fetchAll();
     }
 
     public function buscarAlimentosPorEnergia($energia)
     {
         try {
-            $consulta = "select * from alimentos where energia like :energia order by nombre desc";
-
+            $consulta = "SELECT * FROM alimentos WHERE energia LIKE :energia ORDER BY nombre DESC";
             $result = $this->conexion->prepare($consulta);
             $result->bindParam(':energia', $energia);
             $result->execute();
-
             return $result->fetchAll();
         } catch (PDOException $e) {
             echo "<p>Error: " . $e->getMessage();
@@ -55,8 +51,7 @@ class Model extends PDO
     public function dameAlimento($id)
     {
 
-        $consulta = "select * from alimentos where id=:id";
-
+        $consulta = "SELECT * FROM alimentos WHERE id=:id";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':id', $id);
         $result->execute();
@@ -66,7 +61,7 @@ class Model extends PDO
 
     public function insertarAlimento(array $params)
     {
-        $consulta = "insert into alimentos (nombre, energia, proteina, hidratocarbono, fibra, grasatotal) values (?, ?, ?, ?, ?, ?)";
+        $consulta = "INSERT INTO alimentos (nombre, energia, proteina, hidratocarbono, fibra, grasatotal) VALUES (?, ?, ?, ?, ?, ?)";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(1, $params['nombre']);
         $result->bindParam(2, $params['energia']);
@@ -83,7 +78,7 @@ class Model extends PDO
     function InsertUser(array $params)
     {
 
-        $consulta = "INSERT INTO users (user, pass, nivel, email, ciudad) VALUES (:user, :pass, 1, :email,:ciudad)";
+        $consulta = "INSERT INTO users (user, pass, nivel, email, ciudad) VALUES (:user, :pass, 1, :email,:ciudad)"; //por defecto los usuarios registrados son de nivel 1
         $insert = $this->conexion->prepare($consulta);
         $insert->bindParam(':user', $params['user']);
         $insert->bindParam(':pass', $params['password']);
