@@ -111,3 +111,5 @@ tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero s
  No tienes perniso para realizar esta acción. Se requiere un nivel 1 pero sólo tienes nivel 
 Invitado No tienes perniso para realizar esta acción. Se requiere un nivel 1 pero sólo tienes nivel 
 tony No tienes perniso para realizar esta acción. Se requiere un nivel 2 pero sólo tienes nivel 1
+ No tienes perniso para realizar esta acción. Se requiere un nivel 1 pero sólo tienes nivel 
+ No tienes perniso para realizar esta acción. Se requiere un nivel 1 pero sólo tienes nivel 

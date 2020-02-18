@@ -1,6 +1,0 @@
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined0.56514100 1581265574
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined0.48179900 1581265630
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined0.41085600 1581265766
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined0.27788200 1581265860
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined0.24481100 1581265941
-SQLSTATE[HY093]: Invalid parameter number: parameter was not defined0.14242300 1581266093
